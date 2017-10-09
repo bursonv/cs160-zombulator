@@ -2,16 +2,16 @@
 
 var zombieY = 100;
 var zombieV = 0;
-var zombieA = 0.2;
+var zombieA = 0.3;
 var zombieDamping = -0.5;
-var zombieSize = 80;
+var zombieSize = 75;
 var zombieColor;
 var backgroundColor;
 var humanX = 500;
-var humanV = 0;
+var humanV = 0.6;
 var humanA = -0.2;
 var humanDamping = -0.5;
-var humanSize = 80;
+var humanSize = 30;
 var humanColor;
 
 
@@ -36,10 +36,9 @@ function draw() {
 	if(zombieY >= windowHeight) {
 		zombieY = windowHeight;
 		zombieV *= zombieDamping;
-		zombieSize *= 0.8;
+		zombieSize *= 0.5;
 	if(humanX >= windowHeight);
-		humanX = windowHeight;
 		humanV *= humanDamping;
-		humanSize *= 0.8;
+		humanSize *= 0.6;
 	}
 }
