@@ -1,31 +1,45 @@
 // Zombulator by Vivianne Burson
 
-var zombieX = 80;
-var zombie2X = 100;
-var edge =1000;
-var speed1 = 1; 
-var size = 80;
+var zombieY = 100;
+var zombieV = 0;
+var zombieA = 0.2;
+var zombieDamping = -0.5;
+var zombieSize = 80;
+var zombieColor;
+var backgroundColor;
+var humanX = 500;
+var humanV = 0;
+var humanA = -0.2;
+var humanDamping = -0.5;
+var humanSize = 80;
+var humanColor;
+
 
 function setup() {
-	createCanvas(edge,800);
-	background(255, 255, 255);
+	createCanvas(windowWidth, windowHeight);
+	backgroundColor = color(144, 168, 255);
+	zombieColor = color(242, 255, 0);
+	humanColor = color(0, 0, 0);
 }
 
 function draw() {
-	strokeWeight(4);
-	fill(random(255), random(255), random(255));
-	ellipse(zombieX, 50, 80, 80);
-	// fill(150, 150, 200);
-	ellipse(zombie2X, 100, 80, 80); 
-	zombieX = zombieX + speed1;
-	zombie2X = zombie2X + 5;
-	
-	if(zombieX >= edge){
-	zombieX = 0;
-	// speed1 = speed1 + 1;
-	size = size + 20;
+	background(backgroundColor);
+	noStroke();
+	fill(humanColor);
+	ellipse(windowWidth / 4, humanX, humanSize, humanSize);
+	fill(zombieColor);
+	ellipse(windowWidth / 2, zombieY, zombieSize, zombieSize);
+	zombieY += zombieV;
+	zombieV += zombieA;
+	humanX += humanV;
+	humanV += humanA;
+	if(zombieY >= windowHeight) {
+		zombieY = windowHeight;
+		zombieV *= zombieDamping;
+		zombieSize *= 0.8;
+	if(humanX >= windowHeight);
+		humanX = windowHeight;
+		humanV *= humanDamping;
+		humanSize *= 0.8;
 	}
-	if (zombie2X >= edge) {
-	zombie2X = 0;
-	}
-} 
+}
