@@ -2,43 +2,62 @@
 
 var zombieY = 100;
 var zombieV = 0;
-var zombieA = 0.3;
+var zombieA = 0.2;
 var zombieDamping = -0.5;
-var zombieSize = 75;
+var zombieSize = 80;
 var zombieColor;
-var backgroundColor;
-var humanX = 500;
-var humanV = 0.6;
-var humanA = -0.2;
-var humanDamping = -0.5;
-var humanSize = 30;
+
+var humanY = 100;
+var humanV = 0;
+var humanA = 0.6;
+var humanDamping = -0.8;
+var humanSize = 80;
 var humanColor;
 
+var backgroundColor;
 
 function setup() {
-	createCanvas(windowWidth, windowHeight);
-	backgroundColor = color(144, 168, 255);
-	zombieColor = color(242, 255, 0);
-	humanColor = color(0, 0, 0);
+  createCanvas(windowWidth, windowHeight);
+  backgroundColor = color(114, 168, 255);
+  zombieColor = color(241, 244, 66);
+  humanColor = color(random(200, 255), random(200, 255), random(200, 255));
 }
 
 function draw() {
-	background(backgroundColor);
-	noStroke();
-	fill(humanColor);
-	ellipse(windowWidth / 4, humanX, humanSize, humanSize);
+  background(backgroundColor);
+  noStroke();
+
+  drawZombie();
+  moveZombie();
+  drawHuman();
+  moveHuman();
+
+ }
+
+ 
+function drawZombie() {
 	fill(zombieColor);
-	ellipse(windowWidth / 2, zombieY, zombieSize, zombieSize);
-	zombieY += zombieV;
-	zombieV += zombieA;
-	humanX += humanV;
-	humanV += humanA;
-	if(zombieY >= windowHeight) {
-		zombieY = windowHeight;
-		zombieV *= zombieDamping;
-		zombieSize *= 0.5;
-	if(humanX >= windowHeight);
-		humanV *= humanDamping;
-		humanSize *= 0.6;
-	}
+	ellipse(windowWidth / 2,zombieY, zombieSize, zombieSize);
+
+  zombieY += zombieV;
+  zombieV += zombieA;
+ 
+  if (zombieY + (zombieSize / 2) >= windowHeight) {
+    zombieY = windowHeight - (zombieSize / 2);
+    zombieV *= zombieDamping;
+ 
+ function moveZombie() {
+
+  fill(humanColor);
+  ellipse(windowWidth / 4, humanY, humanSize, humanSize);
+  fill(0);
+  text("human", windowWidth / 4, humanY);
+
+  humanY += humanV;
+  humanV += humanA;
+  if (humanY + (humanSize / 2) >= windowHeight) {
+    humanY = windowHeight - (humanSize / 2);
+    humanV *= humanDamping;
+  }
+
 }
