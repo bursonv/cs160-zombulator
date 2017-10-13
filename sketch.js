@@ -32,33 +32,36 @@ function draw() {
   drawHuman();
   moveHuman();
 
- }
+}
 
 function drawZombie() {
 	fill(zombieColor);
 	ellipse(windowWidth / 2,zombieY, zombieSize, zombieSize);
+}
 
-  zombieY += zombieV;
-  zombieV += zombieA;
- 
 function moveZombie() {
+	 zombieY += zombieV;
+  	 zombieV += zombieA;
+  
   if (zombieY + (zombieSize / 2) >= windowHeight) {
     zombieY = windowHeight - (zombieSize / 2);
     zombieV *= zombieDamping;
+	}
+}
  
 function drawHuman() {
-  fill(humanColor);
-  ellipse(windowWidth / 4, humanY, humanSize, humanSize);
-  fill(0);
-  text("human", windowWidth / 4, humanY);
-
-  humanY += humanV;
-  humanV += humanA;
+  	fill(humanColor);
+  	ellipse(windowWidth / 4, humanY, humanSize, humanSize);
+  	fill(0);
+  	text("human", windowWidth / 4, humanY);
+ }
 
 function moveHuman() {
+	humanY += humanV;
+	humanV += humanA;
+  
   if (humanY + (humanSize / 2) >= windowHeight) {
     humanY = windowHeight - (humanSize / 2);
     humanV *= humanDamping;
-  }
-
+	}
 }
