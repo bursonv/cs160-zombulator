@@ -39,7 +39,10 @@ function initializeZombie() {
 }
 
 function initializeHuman() {
-  // raaaawwwwwrrr!
+  humanX = random(0, windowWidth);
+  humanY = random(200, 500);
+  humanSize = random(MIN_SIZE, MAX_SIZE);
+  humanColor = color(random(0, 255), random(0, 255), random(50, 255), 150);
 }
 
 function drawZombie() {
@@ -48,5 +51,6 @@ function drawZombie() {
 }
 
 function drawHuman() {
-  // mmmm braaaiiiiinss!
+  fill(humanColor);
+  ellipse(humanX, humanY, humanSize, humanSize);
 }
