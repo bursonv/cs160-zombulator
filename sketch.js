@@ -4,7 +4,7 @@
 
 var backgroundColor;
 
-const MIN_SIZE = 25; // old browser? change to var.
+var MIN_SIZE = 25;
 const MAX_SIZE = 500;
 const NUMBER_OF_ZOMBIES = 10;
 const NUMBER_OF_HUMANS = 10;
@@ -38,7 +38,7 @@ function initializeZombies() {
   zombieYs = [0, 150, 200];
   zombieSizes = [50, 100, 250];
   zombieColors = [192, 192, 192];
-  for (var i = 0; i < 1000; ++i) {
+  for (var i = 0; i < 100; ++i) {
     zombieXs[i] = random(0, windowWidth);
     zombieYs[i] = random(0, 200);
     zombieSizes[i] = random(MIN_SIZE, MAX_SIZE);
@@ -51,7 +51,7 @@ function initializeHumans() {
   humanYs = [0, 150, 200];
   humanSizes = [40, 100, 300];
   humanColors = [0, 0, 0];
-  for (var i = 0; i < 5000; ++i) {
+  for (var i = 0; i < 200; ++i) {
     humanXs[i] = random(0, windowWidth);
     humanYs[i] = random(0, 200);
     humanSizes[i] = random(MIN_SIZE, MAX_SIZE);
@@ -60,14 +60,14 @@ function initializeHumans() {
 }
 
 function drawZombies() {
-  for (var i = 0; i < 1000; ++i) {
+  for (var i = 0; i < 100; ++i) {
     fill(zombieColors[i]);
     ellipse(zombieXs[i], zombieYs[i], zombieSizes[i], zombieSizes[i]);
   }
 }
 
 function drawHumans() {
- for (var i = 0; i < 5000; ++i) {
+ for (var i = 0; i < 200; ++i) {
     fill(humanColors[i]);
     ellipse(humanXs[i], humanYs[i], humanSizes[i], humanSizes[i]);
 }
