@@ -23,7 +23,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   backgroundColor = color(245, 255, 245);
   initializeZombies();
-  initializeHuman();
+  initializeHumans();
 }
 
 function draw() {
@@ -57,6 +57,7 @@ function initializeHumans() {
     humanSizes[i] = random(MIN_SIZE, MAX_SIZE);
     humanColors[i] = color(random(200, 255), random(50, 100), random(50, 100), 150);
   }
+}
 
 
 function drawZombies() {
