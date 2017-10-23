@@ -69,9 +69,9 @@ function initializeHumans() {
 function initializeHuman(index) {
   humans[index] = {
     x: random(0, windowWidth),
-    y: random(0, 200),
+    y: random(400, 900),
     size: random(MIN_SIZE, MAX_SIZE),
-    color: color(random(50, 150), random(50, 75), random(50, 150), 150)
+    color: color(random(0, 50), random(50, 75), random(50, 150), 150)
   };
 }
 
