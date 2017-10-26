@@ -98,5 +98,27 @@ function moveHumans() {
 function moveHuman(human) {
   // wlllllaaaaaauuuugggghhhhh!
   // human.x += human.speed;
-  human.y += -1*(human.speed);
+  direction = random(1, 4);
+  if (human.direction == 0) {
+    moveLeft();
+  } else if (human.driection == 1) {
+    moveRight();
+  } else if (human.direction == 2) {
+    moveUp(); 
+  } else if (human.direction == 3) {
+    moveDown();
+  }
+}
+
+function moveLeft() {
+
+}
+function moveRight() {
+  
+}
+function moveUp() {
+  
+}
+function moveDown() {
+  
 }
