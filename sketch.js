@@ -1,5 +1,5 @@
 // http://tinyurl.com/cs160ex16
-// Zombulator by Vivianne Burson
+// Zombulator by Viv Burson & Tyler Nielsen
 // CS 160 Exercise 16: Biased Random Walk
 
 var backgroundColor;
@@ -72,6 +72,8 @@ function initializeHuman(index) {
   humans[index] = {
     x: random(0, windowWidth),
     y: random(windowHeight - 200, windowHeight),
+    d: rand(0, 4),
+    // v: p5.Vector(x, y),
     speed: random(0.25, 3),
     size: random(MIN_SIZE, MAX_SIZE),
     color: color(random(50, 150), random(50, 150), random(150, 255), 150)
@@ -80,32 +82,52 @@ function initializeHuman(index) {
 
 function drawHumans() {
   for (var i = 0; i < NUMBER_OF_HUMANS; ++i) {
-    drawHuman(humans[i]); 
+    drawHuman(humans[i]); // TODO
   }
-}
+} 
 
-function drawHuman(human) { 
+function drawHuman(human) { // TODO
   fill(human.color);
   ellipse(human.x, human.y, human.size, human.size);
 }
 
 function moveHumans() {
-  for (i = 0; i < NUMBER_OF_HUMANS; ++i) {
+  // bllllllaaaarrrgggghhh!
+  // Hint: loop
+  for (var i = 0; i < NUMBER_OF_HUMANS; ++i) {
     moveHuman(humans[i]);
   }
 }
 
 function moveHuman(human) {
   // wlllllaaaaaauuuugggghhhhh!
-  // human.x += human.speed;
-  direction = random(1, 4);
-  if (human.direction == 0) {
-    moveLeft();
-  } else if (human.driection == 1) {
-    moveRight();
-  } else if (human.direction == 2) {
-    moveUp(); 
-  } else if (human.direction == 3) {
-    moveDown();
+  human.d = rand(4);
+  if (human.d == 0) {
+    moveLeft(human);
   }
+  else if (human.d == 1) {
+    moveRight(human);
+  }
+  else if (human.d == 2 || human.d == 3) {
+    moveUp(human);
+  }
+  else {
+    moveDown(human);
+  }
+}
+
+function moveLeft(human) {
+  human.x += human.speed;
+}
+
+function moveRight(human) {
+  human.x -= human.speed;
+}
+
+function moveUp(human) {
+  human.y += human.speed;
+}
+
+function moveDown(human) {
+  human.y -= human.speed;
 }
