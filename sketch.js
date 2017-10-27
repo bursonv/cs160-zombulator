@@ -109,16 +109,3 @@ function moveHuman(human) {
     moveDown();
   }
 }
-
-function moveLeft() {
-
-}
-function moveRight() {
-  
-}
-function moveUp() {
-  
-}
-function moveDown() {
-  
-}
