@@ -23,6 +23,7 @@ function draw() {
   background(backgroundColor);
   noStroke();
   drawZombies();
+  moveZombies();
   drawHumans();
   moveHumans();
 }
@@ -61,18 +62,18 @@ function drawZombie(zombie) {
  } 
 
 function moveZombies () {
-  for (var i = 0; i <NUMBER_OF_ZOMBIES; ++i);
+  for (var i = 0; i <NUMBER_OF_ZOMBIES; ++i) {
       moveZombie(zombies[i]);
   }
 }
 
-function movezombie(zombie) {
+function moveZombie(zombie) {
   var direction = random(0, 100);
-  if (direction < 20) {
+  if (direction < 50) {
     zombie.x += zombie.speed;
-  } else if (direction == 1) {
+  } else if (direction == 4) {
     zombie.x -= zombie.speed;
-  } else if (direction == 2) {
+  } else if (direction == 4) {
     zombie.y += zombie.speed; 
   } else {
     zombie.y -= zombie.speed;
@@ -118,6 +119,15 @@ function moveHumans(){
   }
 }
 
-function movehuman(human) {
-  human.x += human.speed; 
+function moveHuman(human) {
+  var direction = random(0, 100);
+  if (direction < 50) {
+    human.x += human.speed;
+  } else if (direction == 4) {
+    human.x -= human.speed;
+  } else if (direction == 4) {
+    human.y += human.speed; 
+  } else {
+    human.y -= human.speed;
+  }
 }
