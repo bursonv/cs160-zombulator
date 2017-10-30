@@ -1,5 +1,5 @@
 // http://tinyurl.com/cs160ex16
-// Zombulator by Viv Burson & Tyler Nielsen
+// Zombulator by Vivianne Burson
 // CS 160 Exercise 16: Biased Random Walk
 
 var backgroundColor;
@@ -47,6 +47,8 @@ function initializeZombie(index) {
   };
 }
 
+
+
 function drawZombies() {
   for (var i = 0; i < NUMBER_OF_ZOMBIES; ++i) {
     drawZombie(zombies[i]);
@@ -56,8 +58,26 @@ function drawZombies() {
 function drawZombie(zombie) {
   fill(zombie.color);
   ellipse(zombie.x, zombie.y, zombie.size, zombie.size);
+ } 
+
+function moveZombies () {
+  for (var i = 0; i <NUMBER_OF_ZOMBIES; ++i);
+      moveZombie(zombies[i]);
+  }
 }
 
+function movezombie(zombie) {
+  var direction = random(0, 100);
+  if (direction < 20) {
+    zombie.x += zombie.speed;
+  } else if (direction == 1) {
+    zombie.x -= zombie.speed;
+  } else if (direction == 2) {
+    zombie.y += zombie.speed; 
+  } else {
+    zombie.y -= zombie.speed;
+  }
+}
 
 // Humans. Mmmm brains!
 
@@ -68,66 +88,36 @@ function initializeHumans() {
   }
 }
 
-function initializeHuman(index) {
+
+function initializeHuman(index) { 
   humans[index] = {
     x: random(0, windowWidth),
     y: random(windowHeight - 200, windowHeight),
-    d: rand(0, 4),
-    // v: p5.Vector(x, y),
-    speed: random(0.25, 3),
     size: random(MIN_SIZE, MAX_SIZE),
-    color: color(random(50, 150), random(50, 150), random(150, 255), 150)
+    speed: random(0.2, 10),
+    color: color(random(50, 150), random(50,150), random(150, 255), 150)
   };
 }
 
 function drawHumans() {
   for (var i = 0; i < NUMBER_OF_HUMANS; ++i) {
-    drawHuman(humans[i]); // TODO
+    drawHuman(i);
   }
-} 
+}
 
-function drawHuman(human) { // TODO
+function drawHuman(index) {
+  var human = humans[index];
   fill(human.color);
   ellipse(human.x, human.y, human.size, human.size);
 }
 
-function moveHumans() {
-  // bllllllaaaarrrgggghhh!
-  // Hint: loop
+function moveHumans(){
   for (var i = 0; i < NUMBER_OF_HUMANS; ++i) {
-    moveHuman(humans[i]);
+   var human = humans[i];
+   moveHuman(human);
   }
 }
 
-function moveHuman(human) {
-  // wlllllaaaaaauuuugggghhhhh!
-  human.d = rand(4);
-  if (human.d == 0) {
-    moveLeft(human);
-  }
-  else if (human.d == 1) {
-    moveRight(human);
-  }
-  else if (human.d == 2 || human.d == 3) {
-    moveUp(human);
-  }
-  else {
-    moveDown(human);
-  }
-}
-
-function moveLeft(human) {
-  human.x += human.speed;
-}
-
-function moveRight(human) {
-  human.x -= human.speed;
-}
-
-function moveUp(human) {
-  human.y += human.speed;
-}
-
-function moveDown(human) {
-  human.y -= human.speed;
+function movehuman(human) {
+  human.x += human.speed; 
 }
