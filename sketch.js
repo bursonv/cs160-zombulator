@@ -1,6 +1,6 @@
-// http://tinyurl.com/cs160ex16
+// http://tinyurl.com/cs160ex18
 // Zombulator by Vivianne Burson
-// CS 160 Exercise 16: Biased Random Walk
+// CS 160 Exercise 18: Member functions
 
 var backgroundColor;
 
@@ -10,6 +10,7 @@ const NUMBER_OF_ZOMBIES = 100;
 const NUMBER_OF_HUMANS = 100;
 
 var zombies;
+
 var humans;
 
 function setup() {
@@ -34,49 +35,45 @@ function draw() {
 function initializeZombies() {
   zombies = [];
   for (var i = 0; i < NUMBER_OF_ZOMBIES; ++i) {
-    initializeZombie(i);
+    zombies[i] = initializeZombie();
   }
 }
 
-function initializeZombie(index) {
-  zombies[index] = {
+function initializeZombie() {
+  return {
     x: random(0, windowWidth),
     y: random(0, 200),
     speed: random(0.25, 3),
     size: random(MIN_SIZE, MAX_SIZE),
-    color: color(random(100, 255), random(50, 150), random(50, 150), 150)
+    color: color(random(100, 255), random(50, 150), random(50, 150), 150),
+    move: function() {
+      var direction = random(0, 100);
+      if (direction < 20) {
+        this.x += this.speed;
+      } else if (direction < 40) {
+        this.x -= this.speed;
+      } else if (direction < 60) {
+        this.y -= this.speed;
+      } else {
+        this.y += this.speed;
+      }
+    },
+    draw: function() {
+      fill(this.color);
+      ellipse(this.x, this.y, this.size, this.size);
+    }
   };
 }
 
-
-
 function drawZombies() {
   for (var i = 0; i < NUMBER_OF_ZOMBIES; ++i) {
-    drawZombie(zombies[i]);
+    zombies[i].draw();
   }
 }
 
-function drawZombie(zombie) {
-  fill(zombie.color);
-  ellipse(zombie.x, zombie.y, zombie.size, zombie.size);
- } 
-
-function moveZombies () {
-  for (var i = 0; i <NUMBER_OF_ZOMBIES; ++i) {
-      moveZombie(zombies[i]);
-  }
-}
-
-function moveZombie(zombie) {
-  var direction = random(0, 100);
-  if (direction < 50) {
-    zombie.x += zombie.speed;
-  } else if (direction == 4) {
-    zombie.x -= zombie.speed;
-  } else if (direction == 4) {
-    zombie.y += zombie.speed; 
-  } else {
-    zombie.y -= zombie.speed;
+function moveZombies() {
+  for (var i = 0; i < NUMBER_OF_ZOMBIES; ++i) {
+    zombies[i].move();
   }
 }
 
@@ -85,49 +82,44 @@ function moveZombie(zombie) {
 function initializeHumans() {
   humans = [];
   for (var i = 0; i < NUMBER_OF_HUMANS; ++i) {
-    initializeHuman(i);
+    humans[i] = initializeHuman();
   }
 }
 
-
-function initializeHuman(index) { 
-  humans[index] = {
+function initializeHuman() {
+   return {
     x: random(0, windowWidth),
-    y: random(windowHeight - 200, windowHeight),
+    y: random(0, 800),
+    speed: random(0.25, 4),
     size: random(MIN_SIZE, MAX_SIZE),
-    speed: random(0.2, 10),
-    color: color(random(50, 150), random(50,150), random(150, 255), 150)
+    color: color(random(100, 255), random(50, 150), random(50, 150), 150),
+    move: function() {
+      var direction = random(0, 100);
+      if (direction < 20) {
+        this.x += this.speed;
+      } else if (direction < 30) {
+        this.x -= this.speed;
+      } else if (direction < 90) {
+        this.y -= this.speed;
+      } else {
+        this.y += this.speed;
+      }
+    },
+    draw: function() {
+      fill(this.color);
+      ellipse(this.x, this.y, this.size, this.size);
+    }
   };
 }
 
 function drawHumans() {
   for (var i = 0; i < NUMBER_OF_HUMANS; ++i) {
-    drawHuman(i);
+    humans[i].draw();
   }
 }
 
-function drawHuman(index) {
-  var human = humans[index];
-  fill(human.color);
-  ellipse(human.x, human.y, human.size, human.size);
-}
-
-function moveHumans(){
+function moveHumans() {
   for (var i = 0; i < NUMBER_OF_HUMANS; ++i) {
-   var human = humans[i];
-   moveHuman(human);
-  }
-}
-
-function moveHuman(human) {
-  var direction = random(0, 100);
-  if (direction < 50) {
-    human.x += human.speed;
-  } else if (direction == 4) {
-    human.x -= human.speed;
-  } else if (direction == 4) {
-    human.y += human.speed; 
-  } else {
-    human.y -= human.speed;
+    humans[i].move();
   }
 }
