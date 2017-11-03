@@ -1,35 +1,41 @@
-// http://tinyurl.com/cs160ex18
+// http://tinyurl.com/cs160ex19
 // Zombulator by Vivianne Burson
-// CS 160 Exercise 18: Member functions
+// CS 160 Exercise 19: Polymorphism
 
 var backgroundColor;
 
 const MIN_SIZE = 5;
 const MAX_SIZE = 50;
-const NUMBER_OF_ZOMBIES = 100;
-const NUMBER_OF_HUMANS = 100;
+const POPULATION_SIZE = 500;
 
-var zombies;
 
-var humans;
+var population = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   backgroundColor = color(245, 255, 245);
-  initializeZombies();
-  initializeHumans();
+  initializePopulation();
+
 }
 
 function draw() {
-  background(backgroundColor);
-  noStroke();
-  drawZombies();
-  moveZombies();
-  drawHumans();
-  moveHumans();
+background(backgroundColor);
+noStroke();
+drawPopulation();
+movePopulation();  
+
+function initializePopulation() {
+for (var i = 0; i , POPULATION_SIZE; ++i);
+  var humaniod_type = ranadom(0, 100);
+  if population[i] = initializeZombie();
+  } else {
+    population[i] = initializeHuman();
+  }
 }
 
+function drawPopulation() {
 
+}
 // Zombies. Raaahh!
 
 function initializeZombies() {
@@ -46,6 +52,10 @@ function initializeZombie() {
     speed: random(0.25, 3),
     size: random(MIN_SIZE, MAX_SIZE),
     color: color(random(100, 255), random(50, 150), random(50, 150), 150),
+    draw: function() {
+      fill(this.color);
+      ellipse(this.x, this.y, this.size, this.size);
+    },
     move: function() {
       var direction = random(0, 100);
       if (direction < 20) {
@@ -57,19 +67,16 @@ function initializeZombie() {
       } else {
         this.y += this.speed;
       }
-    },
-    draw: function() {
-      fill(this.color);
-      ellipse(this.x, this.y, this.size, this.size);
     }
   };
 }
 
 function drawZombies() {
   for (var i = 0; i < NUMBER_OF_ZOMBIES; ++i) {
-    zombies[i].draw();
+    var zombie = zombies[i];
+    zombie[i].draw();
   }
-}
+}  
 
 function moveZombies() {
   for (var i = 0; i < NUMBER_OF_ZOMBIES; ++i) {
@@ -86,30 +93,30 @@ function initializeHumans() {
   }
 }
 
-function initializeHuman() {
-   return {
+function initializeHuman(index) {
+  return {
     x: random(0, windowWidth),
-    y: random(0, 800),
-    speed: random(0.25, 4),
+    y: random(windowHeight - 200, windowHeight),
+    speed: random(0.25, 3),
     size: random(MIN_SIZE, MAX_SIZE),
-    color: color(random(100, 255), random(50, 150), random(50, 150), 150),
+    color: color(random(50, 150), random(50, 150), random(150, 255), 150),
+    draw: function() {
+      fill(this.color);
+      ellipse(this.x, this.y, this.size, this.size);
+    },
     move: function() {
       var direction = random(0, 100);
       if (direction < 20) {
         this.x += this.speed;
-      } else if (direction < 30) {
+      } else if (direction < 40) {
         this.x -= this.speed;
-      } else if (direction < 90) {
-        this.y -= this.speed;
-      } else {
+      } else if (direction < 60) {
         this.y += this.speed;
+      } else {
+        this.y -= this.speed;
       }
-    },
-    draw: function() {
-      fill(this.color);
-      ellipse(this.x, this.y, this.size, this.size);
     }
-  };
+  }
 }
 
 function drawHumans() {
