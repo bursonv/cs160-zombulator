@@ -121,6 +121,7 @@ function initializeHuman(index) {
 
 function drawHumans() {
   for (var i = 0; i < NUMBER_OF_HUMANS; ++i) {
+    var human = humans[i];
     humans[i].draw();
   }
 }
