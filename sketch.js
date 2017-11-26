@@ -1,6 +1,7 @@
-// http://tinyurl.com/cs160ex20
+// http://tinyurl.com/cs160ex20end
 // Zombulator by Vivianne Burson
-// CS 160 Exercise 20: Collisions
+// CS 160 Exercise 20: Collisions (end of exercise)
+// - Everything is in place, but we have only stubbed isTouching.
 
 var backgroundColor;
 
@@ -29,12 +30,11 @@ function draw() {
 }
 
 function handleCollisions() {
-  for (var i = 0; i < POPULATION_SIZE; ++i) {
+  for(var i = 0; i < POPULATION_SIZE; ++i) {
     var attacker = population[i];
     for (var j = i + 1; j < POPULATION_SIZE; ++j) {
       var target = population[j];
-      
-      if (attacker.isZombie() && target.isHuman() && attacker.isTouching(target)) {
+      if (attacker.isTouching(target)) {
         print("Fight! Fight! Fight!");
       }
     }
