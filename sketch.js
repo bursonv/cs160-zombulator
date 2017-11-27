@@ -7,7 +7,7 @@ var backgroundColor;
 
 const MIN_SIZE = 5;
 const MAX_SIZE = 50;
-const POPULATION_SIZE = 500;
+const POPULATION_SIZE = 350;
 
 var population = [];
 
@@ -56,10 +56,10 @@ function initializePopulation() {
 
 function drawPopulationCounts() {
   stroke(0);
-  textSize(72);
+  textSize(16);
   textAlign(CENTER);
-  text("Zombies: " + zombieCount, width / 2, 100);
-  text("Humans: " + humanCount, width / 2, height - 100);
+  text("Zombies: " + zombieCount, width / 2, 50);
+  text("Humans: " + humanCount, width / 2, height - 50);
 }
 
 function drawPopulation() {
@@ -76,11 +76,12 @@ function movePopulation() {
 
 function initializeZombie() {
   return {
+    humaniodType: "zombie",
     x: random(0, windowWidth),
     y: random(0, 200),
     speed: random(0.25, 3),
     size: random(MIN_SIZE, MAX_SIZE),
-    color: color(random(100, 255), random(50, 150), random(50, 150), 150),
+    color: color(random(65, 255), random(50, 260), random(50, 150), 150),
     move: function() {
       var direction = random(0, 100);
       if (direction < 20) {
@@ -98,18 +99,21 @@ function initializeZombie() {
       ellipse(this.x, this.y, this.size, this.size);
     },
     isTouching: function(target) {
-
+      if (this.humaniodType == target.humaniodType) return false;
+      var distance = dist(this.x, this.y, target.x, target.y);
+      return (distance <= (this.size/2 + target.size/2));
     }
   };
 }
 
 function initializeHuman() {
   return {
+    humaniodType: "human",
     x: random(0, windowWidth),
     y: random(windowHeight - 200, windowHeight),
-    speed: random(0.25, 3),
+    speed: random(0.25, 4),
     size: random(MIN_SIZE, MAX_SIZE),
-    color: color(random(50, 150), random(50, 150), random(150, 255), 150),
+    color: color(random(64, 232), random(50, 211), 262),
     move: function() {
         var direction = random(0, 100);
         if (direction < 20) {
@@ -127,7 +131,9 @@ function initializeHuman() {
         ellipse(this.x, this.y, this.size, this.size);
     },
     isTouching: function(target) {
-
+      if (this.humaniodType == target.humaniodType) return false;
+      var distance = dist(this.x, this.y, target.x, target.y);
+      return (distance <= (this.size/2 + target.size/2));
     }
   };
 }
